@@ -1,31 +1,8 @@
-require("dotenv").config();
-const express = require("express");
-const app = express();
-const port = 7000;
-const ejs = require("ejs");
-const connectDB = require("./config/mongodb");
-const Transaction = require("./models/Transaction");
+const router = require("express").Router();
+const Transaction = require("../models/Transaction");
 
-//register view engine
-app.set("view engine", "ejs");
-
-app.get("/", (req, res) => {
-  res.render("homepage");
-});
-
-app.use(express.static("public"));
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
-
-/////////////////////////////////////////////////////////////////////////////
-//End-Points
-/////////////////////////////////////////////////////////////////////////////
-app.get("/transactions", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    console.log(req.query);
-
     const { q, limit, page } = req.query;
 
     let limitFilter = 0;
@@ -48,8 +25,14 @@ app.get("/transactions", async (req, res) => {
   }
 });
 
-app.get("/transactions/:transactionId", async (req, res) => {
+router.get("/stats", async (req, res) => {
+  const findAllMoney = await Transaction.find();
+  res.send(findAllMoney);
+});
+
+router.get("/:transactionId", async (req, res) => {
   try {
+    console.log(req.params.transactionId);
     const transaction = await Transaction.findById(req.params.transactionId);
     res.send(transaction);
   } catch (error) {
@@ -57,7 +40,7 @@ app.get("/transactions/:transactionId", async (req, res) => {
   }
 });
 
-app.post("/transactions", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const {
       date,
@@ -81,7 +64,7 @@ app.post("/transactions", async (req, res) => {
   }
 });
 
-app.patch("/transactions/:transactionId", async (req, res) => {
+router.patch("/:transactionId", async (req, res) => {
   try {
     const transactionId = req.params.transactionId;
     console.log("Het werkt");
@@ -106,7 +89,7 @@ app.patch("/transactions/:transactionId", async (req, res) => {
   }
 });
 
-app.delete("/transactions/:transactionId", async (req, res) => {
+router.delete("/:transactionId", async (req, res) => {
   try {
     const transactiondId = req.params.transactionId;
     await Transaction.findByIdAndDelete(transactiondId);
@@ -116,10 +99,4 @@ app.delete("/transactions/:transactionId", async (req, res) => {
   }
 });
 
-// money
-
-app.get("/money", async (req, res) => {
-  const findAllMoney = await Transaction.find();
-  console.log(findAllMoney);
-  res.send(findAllMoney);
-});
+module.exports = router;

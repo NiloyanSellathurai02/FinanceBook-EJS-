@@ -91,41 +91,6 @@ const getTransactions = () => {
   deleteTrans.innerHTML = deleteTransaction;
 
   renderPaginationButtons(response.count);
-  countMoney();
-};
-const countMoney = () => {
-  const getMoney = new XMLHttpRequest();
-  getMoney.open("GET", "http://localhost:7000/money", false);
-  getMoney.send();
-  const getMoneyRes = JSON.parse(getMoney.response);
-  console.log(getMoneyRes);
-
-  let revenue = 0;
-  let purchase = 0;
-  let profitloss = 0;
-
-  getMoneyRes.forEach((calc) => {
-    if (calc.type === "Income") {
-      revenue += calc.amount;
-    } else if (calc.type === "Purchase") {
-      purchase += calc.amount;
-    }
-  });
-
-  profitloss = revenue - purchase;
-  let res = Math.round(profitloss * 1000) / 1000;
-
-  console.log(revenue);
-  console.log(purchase);
-  revenueCalculation.innerHTML = ` € ${revenue} ,-`;
-  purchaseCalculation.innerHTML = ` € ${purchase} ,-`;
-  profitLoss.innerHTML = ` € ${res}`;
-
-  if (profitloss > 0) {
-    profitLosStyle.style.color = "green";
-  } else if (profitloss < 0) {
-    profitLosStyle.style.color = "red";
-  }
 };
 
 const renderPaginationButtons = (count) => {
@@ -220,8 +185,9 @@ const setTransaction = () => {
   );
   window.location.reload();
 };
+
 getTransactions();
-countMoney();
+
 submitTransactionBtn.addEventListener("click", () => {
   addTransactionModal.classList.toggle("add-trans-visible");
   setTransaction();
@@ -248,7 +214,11 @@ addTransactionModalClose.addEventListener("click", () => {
 deleteTrans.addEventListener("click", (e) => {
   console.log(e.target.id);
   const deleteTrans = new XMLHttpRequest();
-  deleteTrans.open("delete", `http://localhost:7000/${e.target.id}`, false);
+  deleteTrans.open(
+    "delete",
+    `http://localhost:7000/transactions/${e.target.id}`,
+    false
+  );
   deleteTrans.send();
   window.location.reload();
 });
@@ -261,7 +231,11 @@ editTrans.addEventListener("click", (e) => {
   headingTransModal.innerText = "Edit Transaction";
 
   const editingTrans = new XMLHttpRequest();
-  editingTrans.open("get", `http://localhost:7000/${e.target.id}`, false);
+  editingTrans.open(
+    "get",
+    `http://localhost:7000/transactions/${e.target.id}`,
+    false
+  );
   editingTrans.send();
   const response = JSON.parse(editingTrans.response);
   console.log(response);
@@ -290,7 +264,7 @@ editTransactionBtn.addEventListener("click", (e) => {
   console.log(e.target);
   sendChanges.open(
     "PATCH",
-    `http://localhost:7000/${e.target.getAttribute("rel")}`,
+    `http://localhost:7000/transactions/${e.target.getAttribute("rel")}`,
     false
   );
   sendChanges.setRequestHeader("Content-Type", "application/json");
