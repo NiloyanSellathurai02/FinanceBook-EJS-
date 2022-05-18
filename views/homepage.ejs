@@ -22,10 +22,12 @@
   </head>
   <body>
     <div class="container--main"><%- include('./partials/header.ejs') %></div>
-    <%- include('./partials/modals/menuModal.ejs') %>
+    <%- include('./partials/modals/menuModal.ejs') %> <%-
+    include('./partials/modals/addTransactions.ejs') %>
     <main>
       <%- include('./partials/digits.ejs')%> <%-
       include('./partials/transactions.ejs') %>
     </main>
+    <script src="app.js"></script>
   </body>
 </html>
