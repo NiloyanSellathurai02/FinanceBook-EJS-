@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const port = 7000;
 const ejs = require("ejs");
+const connectDB = require("./config/mongodb");
+const Transaction = require("./models/Transaction");
 
 //register view engine
 app.set("view engine", "ejs");
