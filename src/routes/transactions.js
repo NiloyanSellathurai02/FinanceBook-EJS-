@@ -43,19 +43,19 @@ router.get("/:transactionId", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const {
-      date,
-      name: description,
-      transaction_num: transaction_number,
-      amount,
-      transcationType: type,
+      companyName,
+      transactionAmount,
+      transactionDate,
+      transactionNumber,
+      transactionType,
     } = req.body;
 
     const newTransaction = await Transaction.create({
-      date,
-      description,
-      transaction_number,
-      amount,
-      type,
+      date: transactionDate,
+      description: companyName,
+      transaction_number: transactionNumber,
+      amount: transactionAmount,
+      type: transactionType,
     });
 
     res.send(newTransaction);
@@ -67,23 +67,26 @@ router.post("/", async (req, res) => {
 router.patch("/:transactionId", async (req, res) => {
   try {
     const transactionId = req.params.transactionId;
-    console.log("Het werkt");
-    console.log(req.body);
-    console.log(req.body.dates);
-    console.log(req.body.descriptions);
-    console.log(req.body.transaction_numbers);
-    console.log(req.body.amounts);
-    console.log(req.body.types);
+
+    const {
+      companyName,
+      transactionAmount,
+      transactionDate,
+      transactionNumber,
+      transactionType,
+    } = req.body;
+
+    if (transactionAmount < 100) throw Error("Amount is too low!");
 
     await Transaction.findByIdAndUpdate(transactionId, {
-      date: req.body.dates,
-      description: req.body.descriptions,
-      transaction_number: req.body.transaction_numbers,
-      amount: req.body.amounts,
-      type: req.body.types,
+      date: transactionDate,
+      description: companyName,
+      transaction_number: transactionNumber,
+      amount: transactionAmount,
+      type: transactionType,
     });
 
-    res.send();
+    res.sendStatus(200);
   } catch (error) {
     res.status(400).send(error.message);
   }
