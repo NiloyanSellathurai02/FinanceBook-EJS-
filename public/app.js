@@ -28,7 +28,30 @@ let revenueCalculation = document.getElementById("revenue");
 let purchaseCalculation = document.getElementById("purchaseCalc");
 let profitLoss = document.getElementById("profitLoss");
 const profitLosStyle = document.querySelector(".profitLos");
+///////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/* Login / SignUp Form and Http request to server. */
+///////////////////////////////////////////////////////////////////////
+///// SignUP
+////////////////////////////////////////////////////////////////////////
+let signUpUserName = document.getElementById("signUpUserName");
+let signUpassword = document.getElementById("signUpassword");
+let passwordValidation = document.getElementById("signUpasswordValidation");
+const signUpBtn = document.getElementById("signUp-btn");
 
+const getSignUpDetails = () => {
+  const getUserName = document.getElementById("signUpUserName").value;
+  const getpassWord = document.getElementById("signUpassword").value;
+  const getPasswordDouble = document.getElementById(
+    "signUpasswordValidation"
+  ).value;
+
+  console.log(getUserName, getpassWord, getPasswordDouble);
+};
+
+signUpBtn.addEventListener("click", getSignUpDetails);
+//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // SET LIMIT SELECT BASED ON SEARCH QUERY VALUE
 const params = new URLSearchParams(window.location.search);
 params.forEach((value, key) => {

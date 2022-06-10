@@ -7,6 +7,7 @@ const app = express();
 const api = require("./routes/api");
 const Transaction = require("./models/Transaction");
 const calculateStats = require("./utils/calculateStats");
+const res = require("express/lib/response");
 
 const PORT = 7000;
 
@@ -33,6 +34,14 @@ app.get("/", async (req, res) => {
 
 app.get("/about", (req, res) => {
   res.render("about", { pageTitle: "About us | NS Finance" });
+});
+
+app.get("/login", (req, res) => {
+  res.render("login", { pageTitle: "Login in |NP Finance" });
+});
+
+app.get("/signup", (req, res) => {
+  res.render("signup", { pageTitle: "Sign Up | NP Finance" });
 });
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));

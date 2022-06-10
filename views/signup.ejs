@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./head.ejs") %>
+  <body>
+    <div class="container-login">
+      <div class="container-login-main">
+        <div class="login-main-form">
+          <div class="login--logo">
+            <img src="../images/logo.png" class="login-logo" alt="" />
+          </div>
+
+          <div class="form-container">
+            <form id="form-login" action="#">
+              <label for="fname">Gebruikersnaam :</label><br />
+              <input
+                type="text"
+                name="fname"
+                value=""
+                id="signUpUserName"
+                class="loginName"
+              /><br />
+              <label for="lname">Wachtwoord :</label><br />
+              <input
+                type="password"
+                id="signUpassword"
+                name="lname"
+                value=""
+                class="password"
+              /><br /><br />
+              <label for="lname">Herhaal Wachtwoord :</label><br />
+              <input
+                type="password"
+                id="signUpasswordValidation"
+                name="lname"
+                value=""
+                class="password"
+              /><br />
+              <input
+                type="submit"
+                value="Sign Up"
+                id="signUp-btn"
+                class="login-btn"
+              />
+            </form>
+          </div>
+        </div>
+
+        <!-- <div class="login-main-image">
+          <img
+            src="./images/kelly-sikkema-G_91H-3qZOA-unsplash.jpg"
+            class="image-login"
+          />
+        </div> -->
+      </div>
+    </div>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
