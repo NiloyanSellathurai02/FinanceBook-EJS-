@@ -10,21 +10,20 @@
           </div>
 
           <div class="form-container">
-            <form id="form-login" action="/action_page.php">
+            <form id="form-login">
               <label for="fname">Gebruikersnaam :</label><br />
               <input
                 type="text"
-                name="fname"
                 value=""
                 id="loginUserName"
                 class="loginName"
+                required
               /><br />
               <label for="lname">Wachtwoord :</label><br />
               <input
                 type="password"
                 id="password"
-                name="lname"
-                value=""
+                class="loginName"
               /><br /><br />
               <p class="ww-forget">
                 <a href="signup">Wachtwoord resetten?</a>
@@ -48,6 +47,6 @@
       </div>
     </div>
     <script src="api.js"></script>
-    <script src="app.js"></script>
+    <script src="auth.js"></script>
   </body>
 </html>

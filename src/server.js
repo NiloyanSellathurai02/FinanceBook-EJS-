@@ -7,7 +7,6 @@ const app = express();
 const api = require("./routes/api");
 const Transaction = require("./models/Transaction");
 const calculateStats = require("./utils/calculateStats");
-const res = require("express/lib/response");
 
 const PORT = 7000;
 
@@ -42,6 +41,14 @@ app.get("/login", (req, res) => {
 
 app.get("/signup", (req, res) => {
   res.render("signup", { pageTitle: "Sign Up | NP Finance" });
+});
+
+app.post("/signup", (req, res) => {
+  try {
+    const userName = req.body.name;
+    const passWord = req.body.password;
+    console.log(userName, passWord);
+  } catch (error) {}
 });
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));

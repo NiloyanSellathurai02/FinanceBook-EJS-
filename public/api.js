@@ -1,20 +1,9 @@
-const api = async (method, path, body) => {
+const api = async (method, url, body) => {
   body = body ? JSON.stringify(body) : undefined;
 
-  const response = await fetch(`http://localhost:7000${path}`, {
-    method,
-    headers: { "Content-Type": "application/json" },
-    body,
-  });
+  const response = await axios({ method, url, data: body });
 
-  if (response.status >= 400 && response.status < 700) {
-    throw Error(await response.text());
-  }
-
-  console.log(response.body);
-
-  if (!response.body) return;
-  return await response.json();
+  return response.data;
 };
 
 // const api = async (method, path, body) => {

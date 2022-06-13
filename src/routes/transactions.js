@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Transaction = require("../models/Transaction");
+const { transactionSchema } = require("./transactions.validation");
 
 router.get("/", async (req, res) => {
   try {
@@ -48,7 +49,7 @@ router.post("/", async (req, res) => {
       transactionDate,
       transactionNumber,
       transactionType,
-    } = req.body;
+    } = await transactionSchema.validateAsync(req.body);
 
     const newTransaction = await Transaction.create({
       date: transactionDate,
@@ -103,5 +104,3 @@ router.delete("/:transactionId", async (req, res) => {
 });
 
 module.exports = router;
-
-

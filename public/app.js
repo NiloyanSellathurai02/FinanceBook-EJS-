@@ -33,23 +33,8 @@ const profitLosStyle = document.querySelector(".profitLos");
 /* Login / SignUp Form and Http request to server. */
 ///////////////////////////////////////////////////////////////////////
 ///// SignUP
-////////////////////////////////////////////////////////////////////////
-let signUpUserName = document.getElementById("signUpUserName");
-let signUpassword = document.getElementById("signUpassword");
-let passwordValidation = document.getElementById("signUpasswordValidation");
-const signUpBtn = document.getElementById("signUp-btn");
 
-const getSignUpDetails = () => {
-  const getUserName = document.getElementById("signUpUserName").value;
-  const getpassWord = document.getElementById("signUpassword").value;
-  const getPasswordDouble = document.getElementById(
-    "signUpasswordValidation"
-  ).value;
-
-  console.log(getUserName, getpassWord, getPasswordDouble);
-};
-
-signUpBtn.addEventListener("click", getSignUpDetails);
+// signUpBtn.addEventListener("click", getSignUpDetails);
 //////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 // SET LIMIT SELECT BASED ON SEARCH QUERY VALUE
@@ -106,40 +91,46 @@ const toggleMenuList = () => {
  * Funtion that gets all transaction from the database, according to the specified query filters
  */
 const getAllTransactions = async () => {
-  const query = location.search;
-  const { transactions, count } = await api("GET", `/transactions${query}`);
-  console.log("Got", count, "transactions from the server..");
+  try {
+    const query = location.search;
+    const { transactions, count } = await api("GET", `/transactions${query}`);
+    console.log("Got", count, "transactions from the server..");
 
-  // Empty groups for divs from transaction items
-  let transactionDates = "";
-  let transactionDescriptions = "";
-  let transactionNumbers = "";
-  let transactionTypes = "";
-  let transactionAmounts = "";
-  let transactionEditButtons = "";
-  let transactionDeleteButtons = "";
+    // Empty groups for divs from transaction items
+    let transactionDates = "";
+    let transactionDescriptions = "";
+    let transactionNumbers = "";
+    let transactionTypes = "";
+    let transactionAmounts = "";
+    let transactionEditButtons = "";
+    let transactionDeleteButtons = "";
 
-  transactions.forEach((trans) => {
-    transactionDates += `<div class="transaction-data-js js-transaction-date">${trans.date} </div>`;
-    transactionDescriptions += `<div class="transaction-data-js js-transaction-description"> ${trans.description}</div>`;
-    transactionNumbers += `<div class="transaction-data-js js-transaction-number">${trans.transaction_number}</div>`;
-    transactionTypes += `<div class="transaction-data-js js-transaction-type">${trans.type}</div>`;
-    transactionAmounts += `<div class="transaction-data-js js-transaction-amount"> € ${trans.amount},-</div>`;
-    transactionEditButtons += `<div class="transaction-data-js js-transaction-edit" onclick="getTransaction(this.id)" id="${trans._id}">
-    <img src=${images[0]} alt="edit-trans" class="edit-trans"  style="pointer-events:none" /></div>`;
-    transactionDeleteButtons += `<div class="transaction-data-js js-transaction-delete" onclick="deleteTransaction(this.id)" id="${trans._id}">
-    <img src=${images[1]} alt="edit-trans" class="edit-trans" style="pointer-events:none"  /></div>`;
-  });
+    transactions.forEach((trans) => {
+      transactionDates += `<div class="transaction-data-js js-transaction-date">${trans.date} </div>`;
+      transactionDescriptions += `<div class="transaction-data-js js-transaction-description"> ${trans.description}</div>`;
+      transactionNumbers += `<div class="transaction-data-js js-transaction-number">${trans.transaction_number}</div>`;
+      transactionTypes += `<div class="transaction-data-js js-transaction-type">${trans.type}</div>`;
+      transactionAmounts += `<div class="transaction-data-js js-transaction-amount"> € ${trans.amount},-</div>`;
+      transactionEditButtons += `<div class="transaction-data-js js-transaction-edit" onclick="getTransaction(this.id)" id="${trans._id}">
+      <img src=${images[0]} alt="edit-trans" class="edit-trans"  style="pointer-events:none" /></div>`;
+      transactionDeleteButtons += `<div class="transaction-data-js js-transaction-delete" onclick="deleteTransaction(this.id)" id="${trans._id}">
+      <img src=${images[1]} alt="edit-trans" class="edit-trans" style="pointer-events:none"  /></div>`;
+    });
 
-  document.getElementById("insertDate").innerHTML = transactionDates;
-  document.getElementById("description").innerHTML = transactionDescriptions;
-  document.getElementById("transaction-number").innerHTML = transactionNumbers;
-  document.getElementById("type").innerHTML = transactionTypes;
-  document.getElementById("amountTrans").innerHTML = transactionAmounts;
-  document.getElementById("editTrans").innerHTML = transactionEditButtons;
-  document.getElementById("deleteTrans").innerHTML = transactionDeleteButtons;
+    document.getElementById("insertDate").innerHTML = transactionDates;
+    document.getElementById("description").innerHTML = transactionDescriptions;
+    document.getElementById("transaction-number").innerHTML =
+      transactionNumbers;
+    document.getElementById("type").innerHTML = transactionTypes;
+    document.getElementById("amountTrans").innerHTML = transactionAmounts;
+    document.getElementById("editTrans").innerHTML = transactionEditButtons;
+    document.getElementById("deleteTrans").innerHTML = transactionDeleteButtons;
 
-  renderPaginationButtons(count);
+    renderPaginationButtons(count);
+  } catch (error) {
+    alert(error.response?.data);
+    console.log(error.response?.data);
+  }
 };
 
 /**
@@ -162,10 +153,10 @@ const setTransaction = async (event, target) => {
       formDataAsObject
     );
 
-    // window.location.reload();
+    window.location.reload();
   } catch (err) {
-    console.error(err.message);
-    alert(err.message);
+    alert(err.response?.data);
+    console.error(err.response?.data);
   }
 };
 

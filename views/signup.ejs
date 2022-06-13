@@ -10,50 +10,47 @@
           </div>
 
           <div class="form-container">
-            <form id="form-login" action="#">
+            <form id="form-login" onsubmit="getSignUpDetails(event, this)">
               <label for="fname">Gebruikersnaam :</label><br />
               <input
                 type="text"
-                name="fname"
                 value=""
                 id="signUpUserName"
                 class="loginName"
+                minlength="4"
+                name="username"
               /><br />
               <label for="lname">Wachtwoord :</label><br />
               <input
                 type="password"
+                name="password"
                 id="signUpassword"
-                name="lname"
                 value=""
                 class="password"
+                minlength="8"
               /><br /><br />
               <label for="lname">Herhaal Wachtwoord :</label><br />
               <input
                 type="password"
+                name="password2"
                 id="signUpasswordValidation"
-                name="lname"
                 value=""
                 class="password"
+                minlength="8"
               /><br />
+              <p><a href=""></a></p>
               <input
                 type="submit"
                 value="Sign Up"
-                id="signUp-btn"
+                id="signupBtn"
                 class="login-btn"
               />
             </form>
           </div>
         </div>
-
-        <!-- <div class="login-main-image">
-          <img
-            src="./images/kelly-sikkema-G_91H-3qZOA-unsplash.jpg"
-            class="image-login"
-          />
-        </div> -->
       </div>
     </div>
     <script src="api.js"></script>
-    <script src="app.js"></script>
+    <script src="auth.js"></script>
   </body>
 </html>
