@@ -1,10 +1,13 @@
 require("dotenv").config();
 require("ejs");
 require("./config/mongodb");
+const hotReload = require("../hot-reload");
+
 const express = require("express");
 const app = express();
 
 const api = require("./routes/api");
+const auth = require("./routes/auth");
 const Transaction = require("./models/Transaction");
 const calculateStats = require("./utils/calculateStats");
 
@@ -17,6 +20,8 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 app.use(api);
+
+app.use(hotReload());
 
 // VIEWS
 app.get("/", async (req, res) => {
@@ -36,19 +41,12 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("login", { pageTitle: "Login in |NP Finance" });
+  res.render("login", { pageTitle: "Login in | NP Finance" });
 });
 
 app.get("/signup", (req, res) => {
   res.render("signup", { pageTitle: "Sign Up | NP Finance" });
-});
-
-app.post("/signup", (req, res) => {
-  try {
-    const userName = req.body.name;
-    const passWord = req.body.password;
-    console.log(userName, passWord);
-  } catch (error) {}
+  app.use(auth);
 });
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));

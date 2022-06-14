@@ -19,6 +19,7 @@
                 class="loginName"
                 minlength="4"
                 name="username"
+                required
               /><br />
               <label for="lname">Wachtwoord :</label><br />
               <input
@@ -28,6 +29,8 @@
                 value=""
                 class="password"
                 minlength="8"
+                pattern="[A-Za-z0-9]+(@#)"
+                required
               /><br /><br />
               <label for="lname">Herhaal Wachtwoord :</label><br />
               <input
@@ -37,6 +40,8 @@
                 value=""
                 class="password"
                 minlength="8"
+                pattern="[A-Za-z0-9]+(@#)"
+                required
               /><br />
               <p><a href=""></a></p>
               <input
