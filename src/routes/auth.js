@@ -8,9 +8,15 @@ const { loginSchema, signUpSchema } = require("./auth.validation");
 
 // Endpoint should have Try-Catch on all instances, both on Server ánd Auth.js
 
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   try {
-  } catch (error) {}
+    console.log(req.body);
+    const credentials = req.body;
+    const { username, password } = await loginSchema.validateAsync(credentials);
+    res.send();
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
 }); //function)
 
 router.post("/signup", async (req, res) => {

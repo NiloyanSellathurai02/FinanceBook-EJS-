@@ -5,14 +5,15 @@
   height: 100vh;
   width: 100%;
   /* background-color: #0b6e5c; */
-  background-image: url("../images/austin-distel-wD1LRb9OeEo-unsplash.jpg");
+  background-image: linear-gradient(to bottom, #233884b0, #0b6e5ca5),
+    url("../images/WhatsApp\ Image\ 2022-06-15\ at\ 3.27.52\ PM.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .container-login-main {
-  background-color: rgb(254, 254, 254);
+  background-color: #ffffffe2;
   height: 30rem;
   width: 20rem;
   border-radius: 0.25rem;
@@ -74,8 +75,8 @@
 }
 
 .login-logo {
-  height: 4rem;
-  margin-bottom: 3rem;
+  height: 6rem;
+  margin-bottom: 2rem;
 }
 
 .login--logo {
@@ -91,4 +92,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.ww-aanmaken {
+  text-decoration: underline;
+  color: black;
+  font-weight: bold;
+  font-style: italic;
 }

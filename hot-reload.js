@@ -9,7 +9,7 @@ liveReloadServer.watch(path.join(__dirname, "public"));
 liveReloadServer.server.once("connection", () => {
   setTimeout(() => {
     liveReloadServer.refresh("/");
-  }, 100);
+  }, 50);
 });
 
 module.exports = connectLivereload;

@@ -6,32 +6,39 @@
       <div class="container-login-main">
         <div class="login-main-form">
           <div class="login--logo">
-            <img src="../images/logo.png" class="login-logo" alt="" />
+            <img
+              src="../images/NPInnovation-Logo-White.png"
+              class="login-logo"
+              alt=""
+            />
           </div>
 
           <div class="form-container">
-            <form id="form-login">
+            <form id="form-login" onsubmit="getLoginCredentials(event, this)">
               <label for="fname">Gebruikersnaam :</label><br />
               <input
                 type="text"
                 value=""
                 id="loginUserName"
                 class="loginName"
+                name="username"
                 required
               /><br />
               <label for="lname">Wachtwoord :</label><br />
               <input
                 type="password"
                 id="password"
+                name="password"
                 class="loginName"
               /><br /><br />
               <p class="ww-forget">
-                <a href="signup">Wachtwoord aanmaken</a>
+                <a href="signup" class="ww-aanmaken">Wachtwoord aanmaken</a>
               </p>
               <input
                 type="submit"
                 value="Login"
                 id="login-btn"
+                name="repeat-password"
                 class="login-btn"
               />
             </form>
@@ -47,6 +54,6 @@
       </div>
     </div>
     <script src="api.js"></script>
-    <script src="auth.js"></script>
+    <script src="login.js"></script>
   </body>
 </html>

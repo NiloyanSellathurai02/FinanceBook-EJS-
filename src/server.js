@@ -24,7 +24,7 @@ app.use(api);
 app.use(hotReload());
 
 // VIEWS
-app.get("/", async (req, res) => {
+app.get("/homepage", async (req, res) => {
   const transactions = await Transaction.find();
   const { profitLoss, purchase, revenue } = calculateStats(transactions);
 
@@ -40,7 +40,7 @@ app.get("/about", (req, res) => {
   res.render("about", { pageTitle: "About us | NS Finance" });
 });
 
-app.get("/login", (req, res) => {
+app.get("/", (req, res) => {
   res.render("login", { pageTitle: "Login in | NP Finance" });
 });
 

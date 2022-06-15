@@ -6,7 +6,7 @@ const transactionSchema = Joi.object({
     .max(200)
     .required(),
   transactionAmount: Joi.number().required(),
-  transactionDate: Joi.date().required(),
+  transactionDate: Joi.date().greater("1-1-1974").required(),
   transactionNumber: Joi.string()
     .pattern(/^[a-zA-Z0-9\s_-]+$/, { name: "string" })
     .required(),
