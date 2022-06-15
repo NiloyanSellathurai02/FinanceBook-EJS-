@@ -1,30 +1,24 @@
 // Front-end JS code for authentication
-const getUserName = document.getElementById("signUpUserName");
-const getpassWord = document.getElementById("signUpassword");
-const getpassWordValidation = document.getElementById(
-  "signUpasswordValidation"
-);
+const errorMessage = document.getElementById("FormError");
+
 const getSignUpDetails = async (event, target) => {
   try {
     event.preventDefault(); // Prevent the page from reloading;
     const formData = new FormData(event.target);
     const formDataAsObject = Object.fromEntries(formData.entries());
-    if (formDataAsObject.password === formDataAsObject.password2) {
-      console.log(formDataAsObject);
-      await api("POST", "/auth/signup", formDataAsObject);
-    } else if (
-      formDataAsObject === "" ||
-      formDataAsObject.password !== formDataAsObject.password2
-    ) {
-      getUserName.style.border = "3px solid red";
-      getpassWord.style.border = "3px solid red";
-      getpassWordValidation.style.border = "3px solid red";
+    console.log(formDataAsObject);
+    if (formDataAsObject.password !== formDataAsObject.password2) {
+      throw Error("Passwords do not match");
     }
+    return await api("POST", "/auth/signup", formDataAsObject);
   } catch (error) {
     console.log(error);
+    const message = error.response?.data ?? error.message;
+    errorMessage.classList.add("FormError--visible");
+    errorMessage.textContent = message;
   }
 };
 
-//////////////////////////////////////////////////////////////////////
-////////////////////////////// Login /////////////////////////////////
-/////////////////////////////////////////////////////////////////////
+document.addEventListener("click", () =>
+  errorMessage.classList.remove("FormError--visible")
+);

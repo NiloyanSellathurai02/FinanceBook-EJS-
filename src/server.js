@@ -46,7 +46,6 @@ app.get("/login", (req, res) => {
 
 app.get("/signup", (req, res) => {
   res.render("signup", { pageTitle: "Sign Up | NP Finance" });
-  app.use(auth);
 });
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));

@@ -1,3 +1,18 @@
+.FormError {
+  display: none;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 12px;
+  text-align: center;
+  color: rgb(151, 0, 0);
+  background-color: rgb(245, 115, 115);
+  border-radius: 0.25rem;
+}
+
+.FormError--visible {
+  display: block;
+}
+
 form {
   display: flex;
   justify-content: space-around;

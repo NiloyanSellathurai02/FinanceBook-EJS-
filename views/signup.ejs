@@ -9,6 +9,7 @@
             <img src="../images/logo.png" class="login-logo" alt="" />
           </div>
 
+          <div class="FormError" id="FormError"></div>
           <div class="form-container">
             <form id="form-login" onsubmit="getSignUpDetails(event, this)">
               <label for="fname">Gebruikersnaam :</label><br />
@@ -19,7 +20,6 @@
                 class="loginName"
                 minlength="4"
                 name="username"
-                required
               /><br />
               <label for="lname">Wachtwoord :</label><br />
               <input
@@ -29,8 +29,7 @@
                 value=""
                 class="password"
                 minlength="8"
-                pattern="[A-Za-z0-9]+(@#)"
-                required
+                pattern="^[a-zA-Z0-9]+$"
               /><br /><br />
               <label for="lname">Herhaal Wachtwoord :</label><br />
               <input
@@ -40,8 +39,7 @@
                 value=""
                 class="password"
                 minlength="8"
-                pattern="[A-Za-z0-9]+(@#)"
-                required
+                pattern="^[a-zA-Z0-9]+$"
               /><br />
               <p><a href=""></a></p>
               <input
