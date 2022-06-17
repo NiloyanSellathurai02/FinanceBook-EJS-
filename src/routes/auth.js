@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { object } = require("joi");
 const { loginSchema, signUpSchema } = require("./auth.validation");
-
+const User = require("../models/User");
 // code, routes
 
 // Create two POST routes, one for Login and one for Register.
@@ -13,11 +13,15 @@ router.post("/login", async (req, res) => {
     console.log(req.body);
     const credentials = req.body;
     const { username, password } = await loginSchema.validateAsync(credentials);
-    res.send();
+    const checkUser = await User.find({
+      username: username,
+      password: password,
+    });
+    res.send(checkUser);
   } catch (error) {
     res.status(400).send(error.message);
   }
-}); //function)
+});
 
 router.post("/signup", async (req, res) => {
   try {
@@ -25,11 +29,11 @@ router.post("/signup", async (req, res) => {
     const { username, password } = await signUpSchema.validateAsync(
       credentials
     );
-
-    // throw Error("Network error...");
-
-    console.log(username, password);
-    res.send(req.body);
+    const createUser = await User.create({
+      username: username,
+      password: password,
+    });
+    res.send(createUser);
   } catch (error) {
     res.status(400).send(error.message);
   }
