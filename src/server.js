@@ -5,12 +5,12 @@ const hotReload = require("../hot-reload");
 
 const express = require("express");
 const app = express();
-
 const api = require("./routes/api");
 const auth = require("./routes/auth");
 const Transaction = require("./models/Transaction");
 const calculateStats = require("./utils/calculateStats");
 
+const bcrypt = require("bcrypt");
 const PORT = 7000;
 
 app.use(express.json());

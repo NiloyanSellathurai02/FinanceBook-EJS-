@@ -10,7 +10,8 @@ const getSignUpDetails = async (event, target) => {
     if (formDataAsObject.password !== formDataAsObject.password2) {
       throw Error("Passwords do not match");
     }
-    return await api("POST", "/auth/signup", formDataAsObject);
+    await api("POST", "/auth/signup", formDataAsObject);
+    window.location.replace("/");
   } catch (error) {
     console.log(error);
     const message = error.response?.data ?? error.message;
