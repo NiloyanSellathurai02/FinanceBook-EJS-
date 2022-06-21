@@ -106,7 +106,9 @@ const getAllTransactions = async () => {
     let transactionDeleteButtons = "";
 
     transactions.forEach((trans) => {
-      transactionDates += `<div class="transaction-data-js js-transaction-date">${trans.date} </div>`;
+      transactionDates += `<div class="transaction-data-js js-transaction-date">${dayjs(
+        trans.date
+      ).format("DD MMM YYYY")} </div>`;
       transactionDescriptions += `<div class="transaction-data-js js-transaction-description"> ${trans.description}</div>`;
       transactionNumbers += `<div class="transaction-data-js js-transaction-number">${trans.transaction_number}</div>`;
       transactionTypes += `<div class="transaction-data-js js-transaction-type">${trans.type}</div>`;

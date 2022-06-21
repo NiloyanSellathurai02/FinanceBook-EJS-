@@ -1,20 +1,36 @@
 require("dotenv").config();
 require("ejs");
+require("./config/passport-config");
 require("./config/mongodb");
-const hotReload = require("../hot-reload");
 
 const express = require("express");
-const app = express();
-const api = require("./routes/api");
-const auth = require("./routes/auth");
+const session = require("express-session");
+const passport = require("passport");
+
+const hotReload = require("../hot-reload");
+const { isAuthenticated } = require("./middleware");
 const Transaction = require("./models/Transaction");
+const api = require("./routes/api");
 const calculateStats = require("./utils/calculateStats");
 
-const bcrypt = require("bcrypt");
+const MongoStore = require("connect-mongo");
+const app = express();
 const PORT = 7000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: `mongodb+srv://Niloyan:${process.env.MONGODB_PASSWORD}@auto-pilot.tqatj.mongodb.net/NP_Finance?retryWrites=true&w=majority`,
+    }),
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.set("view engine", "ejs");
 
@@ -24,7 +40,9 @@ app.use(api);
 app.use(hotReload());
 
 // VIEWS
-app.get("/homepage", async (req, res) => {
+app.get("/homepage", isAuthenticated, async (req, res) => {
+  console.log(req.user);
+
   const transactions = await Transaction.find();
   const { profitLoss, purchase, revenue } = calculateStats(transactions);
 
@@ -33,6 +51,8 @@ app.get("/homepage", async (req, res) => {
     profitLoss,
     purchase,
     revenue,
+    username: req.user.username,
+    picture: req.user.picture,
   });
 });
 

@@ -9,11 +9,13 @@
       </div>
       <div class="header--login-placeholder">
         <div class="login-pp">
-          <img src="/images/NS-pf.jpg" alt="profielfoto" class="user-pp" />
+          <img src="<%= picture ??
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/768px-User_font_awesome.svg.png?20160212005950"
+          %>" alt="profielfoto" class="user-pp" />
         </div>
         <div class="login--pp-display-name">
           <div id="login--pp-firstname">
-            <h2 id="header-display-username">Niloyan</h2>
+            <h2 id="header-display-username"><%= username %></h2>
           </div>
         </div>
       </div>

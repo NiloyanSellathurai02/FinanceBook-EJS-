@@ -2,7 +2,8 @@ const router = require("express").Router();
 const { object } = require("joi");
 const { loginSchema, signUpSchema } = require("./auth.validation");
 const User = require("../models/User");
-const { response } = require("express");
+const bcrypt = require("bcrypt");
+const passport = require("passport");
 
 // code, routes
 
@@ -10,19 +11,8 @@ const { response } = require("express");
 
 // Endpoint should have Try-Catch on all instances, both on Server ánd Auth.js
 
-router.post("/login", async (req, res) => {
-  try {
-    const credentials = req.body;
-    const { username, password } = await loginSchema.validateAsync(credentials);
-    const checkUser = await User.find({
-      username: username,
-      password: password,
-    });
-    console.log(checkUser);
-    res.send(checkUser);
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
+router.post("/login", passport.authenticate("local"), (req, res) => {
+  res.sendStatus(200);
 });
 
 router.post("/signup", async (req, res) => {
@@ -39,7 +29,7 @@ router.post("/signup", async (req, res) => {
     console.log(
       `User is created ${username} is the Username and the Password is ${hashedPassword}`
     );
-    res.send(createUser);
+    res.redirect("/");
   } catch (error) {
     res.status(400).send(error.message);
   }

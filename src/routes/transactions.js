@@ -1,6 +1,10 @@
 const router = require("express").Router();
 const Transaction = require("../models/Transaction");
 const { transactionSchema } = require("./transactions.validation");
+const { isAuthenticated } = require("../middleware");
+
+// Make sure that all routes that follow below this statement, require authentication
+router.use(isAuthenticated);
 
 router.get("/", async (req, res) => {
   try {

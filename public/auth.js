@@ -1,6 +1,22 @@
 // Front-end JS code for authentication
 const errorMessage = document.getElementById("FormError");
 
+const loginUser = async (event) => {
+  try {
+    event.preventDefault(); // Prevent the page from reloading;
+    const formData = new FormData(event.target);
+    const formDataAsObject = Object.fromEntries(formData.entries());
+    console.log(formDataAsObject);
+    await api("POST", "/auth/login", formDataAsObject);
+    window.location.replace("/homepage");
+  } catch (error) {
+    console.log(error);
+    const message = error.response?.data ?? error.message;
+    errorMessage.classList.add("FormError--visible");
+    errorMessage.textContent = message;
+  }
+};
+
 const getSignUpDetails = async (event, target) => {
   try {
     event.preventDefault(); // Prevent the page from reloading;

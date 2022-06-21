@@ -13,8 +13,9 @@
             />
           </div>
 
+          <div class="FormError" id="FormError"></div>
           <div class="form-container">
-            <form id="form-login" onsubmit="getLoginCredentials(event, this)">
+            <form id="form-login" onsubmit="loginUser(event)">
               <label for="fname">Gebruikersnaam :</label><br />
               <input
                 type="text"
@@ -53,6 +54,6 @@
       </div>
     </div>
     <script src="api.js"></script>
-    <script src="login.js"></script>
+    <script src="auth.js"></script>
   </body>
 </html>
