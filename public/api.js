@@ -1,7 +1,7 @@
 const api = async (method, path, body) => {
   const response = await axios({
     method,
-    url: `https://npfinanceejs-nl.onrender.com/${path}`,
+    url: `http://localhost:7000${path}`,
     data: body,
   });
 
