@@ -36,6 +36,10 @@ const getSignUpDetails = async (event, target) => {
   }
 };
 
+const logout = () => {
+  console.log("Ik werk ");
+};
+
 document.addEventListener("click", () =>
   errorMessage.classList.remove("FormError--visible")
 );

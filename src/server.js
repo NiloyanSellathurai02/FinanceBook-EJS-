@@ -14,6 +14,7 @@ const api = require("./routes/api");
 const calculateStats = require("./utils/calculateStats");
 
 const MongoStore = require("connect-mongo");
+const { deserializeUser } = require("passport");
 const app = express();
 const PORT = 7000;
 
@@ -69,3 +70,7 @@ app.get("/signup", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));
+
+app.delete("/logout", (req, res) => {
+  console.log("Ik heb uitgelogd");
+});

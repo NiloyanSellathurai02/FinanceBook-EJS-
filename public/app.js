@@ -28,6 +28,8 @@ let revenueCalculation = document.getElementById("revenue");
 let purchaseCalculation = document.getElementById("purchaseCalc");
 let profitLoss = document.getElementById("profitLoss");
 const profitLosStyle = document.querySelector(".profitLos");
+
+const logOutBtn = document.getElementById("logout");
 ///////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 /* Login / SignUp Form and Http request to server. */
@@ -199,6 +201,12 @@ const deleteTransaction = async (id) => {
 
 getAllTransactions();
 
+const logOut = async () => {
+  window.location.replace("/");
+  return await api("DELETE", `/logout`);
+};
+
+logOutBtn.addEventListener("click", logOut);
 hbMenu.addEventListener("click", () => {
   console.log("Menu Open");
   hbMenuOpen.classList.toggle("sidebar--toggle");

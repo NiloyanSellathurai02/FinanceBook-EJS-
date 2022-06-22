@@ -19,6 +19,7 @@ header {
 }
 #header-display-username {
   font-size: 1rem;
+  margin-right: 5rem;
 }
 .header--login-placeholder {
   display: flex;
@@ -30,4 +31,12 @@ header {
 .user-pp {
   height: 2rem;
   border-radius: 30rem;
+}
+
+.log-out {
+  text-decoration: none;
+  color: rgb(255, 0, 0);
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
 }
