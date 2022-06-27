@@ -159,7 +159,6 @@ const setTransaction = async (event, target) => {
 
     window.location.reload();
   } catch (err) {
-    alert(err.response?.data);
     console.error(err.response?.data);
   }
 };
@@ -202,11 +201,14 @@ const deleteTransaction = async (id) => {
 getAllTransactions();
 
 const logOut = async () => {
-  window.location.replace("/");
-  return await api("DELETE", `/logout`);
+  try {
+    await api("POST", `/auth/logout`);
+    window.location.replace("/");
+  } catch (error) {
+    alert(error.message);
+  }
 };
 
-logOutBtn.addEventListener("click", logOut);
 hbMenu.addEventListener("click", () => {
   console.log("Menu Open");
   hbMenuOpen.classList.toggle("sidebar--toggle");

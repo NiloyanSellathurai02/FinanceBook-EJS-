@@ -57,7 +57,7 @@ app.get("/homepage", isAuthenticated, async (req, res) => {
   });
 });
 
-app.get("/about", (req, res) => {
+app.get("/about", isAuthenticated, (req, res) => {
   res.render("about", { pageTitle: "About us | NS Finance" });
 });
 
@@ -70,9 +70,3 @@ app.get("/signup", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));
-
-app.delete("/logout", (req, res) => {
-  req.session.destroy(() => {
-    console.log("Ik heb uitgelogd");
-  });
-});

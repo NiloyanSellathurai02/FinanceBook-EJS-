@@ -34,4 +34,17 @@ router.post("/signup", async (req, res) => {
     res.status(400).send(error.message);
   }
 });
+
+router.post("/logout", (req, res) => {
+  try {
+    req.logout((err) => {
+      if (err) throw new Error(err.message);
+      res.sendStatus(200);
+    });
+  } catch (error) {
+    res.status(400).send(error.message);
+    console.log(error);
+  }
+});
+
 module.exports = router;
