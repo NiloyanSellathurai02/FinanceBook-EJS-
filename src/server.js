@@ -72,5 +72,7 @@ app.get("/signup", (req, res) => {
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));
 
 app.delete("/logout", (req, res) => {
-  console.log("Ik heb uitgelogd");
+  req.session.destroy(() => {
+    console.log("Ik heb uitgelogd");
+  });
 });

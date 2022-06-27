@@ -11,13 +11,17 @@
       <div class="add-trans-inputfield">
         <form id="transactionForm" onsubmit="setTransaction(event, this)">
           <div class="inputfield-trans">
-            <label for="transactionDate">Date</label>
-            <input type="date" id="transactionDate" name="transactionDate" />
+            <input
+              type="date"
+              id="transactionDate"
+              name="transactionDate"
+              placeholder="Company Name"
+            />
           </div>
 
           <!----------------------------------------------->
           <div class="inputfield-trans">
-            <label for="companyName">Description</label>
+            <!-- <label for="companyName">Description</label> -->
             <input
               type="text"
               id="companyName"
@@ -29,7 +33,7 @@
 
           <!----------------------------------------------->
           <div class="inputfield-trans">
-            <label for="transactionNumber">Transaction number</label>
+            <!-- <label for="transactionNumber">Transaction number</label> -->
             <input
               type="text"
               id="transactionNumber"
@@ -41,7 +45,7 @@
 
           <!----------------------------------------------->
           <div class="inputfield-trans">
-            <label for="transactionAmount"> Amount</label>
+            <!-- <label for="transactionAmount"> Amount</label> -->
             <input
               type="text"
               id="transactionAmount"
@@ -53,7 +57,7 @@
           </div>
           <!----------------------------------------------->
           <div class="inputfield-trans">
-            <label for="transactionType" id="trans-type"> Type</label>
+            <!-- <label for="transactionType" id="trans-type"> Type</label> -->
             <select name="transactionType" id="transactionType">
               <option value="Income" id="income">Income</option>
               <option value="Purchase" id="purchase">Purchase</option>

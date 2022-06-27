@@ -20,35 +20,32 @@ form {
 }
 .add-trans-inputfield {
   height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-content: center;
-  padding: 1.5rem;
+  padding: 1rem;
 }
 .inputfield-trans {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 0.8rem;
 }
 
 .inputfield-trans label {
   font-size: 0.8rem;
-  margin-right: 1rem;
 }
 
 .inputfield-trans input {
   padding: 0.4rem;
-  width: 10rem;
+  width: 15rem;
+  height: 2.5rem;
   border: 1px solid rgb(0, 0, 0);
   box-shadow: 0 2px 10px 0 rgb(0, 0, 0, 0.25), 0 10px 20px 0 rgb(0, 0, 0, 0.15);
   border-radius: 0.25rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: 1.5rem;
 }
 
 .inputfield-trans select {
   padding: 0.4rem;
-  width: 10rem;
+  width: 15rem;
+  height: 2.5rem;
   border: 1px solid black;
   box-shadow: 0 2px 10px 0 rgb(0, 0, 0, 0.25), 0 10px 20px 0 rgb(0, 0, 0, 0.15);
   border-radius: 0.25rem;
