@@ -44,7 +44,7 @@ app.use(hotReload());
 app.get("/homepage", isAuthenticated, async (req, res) => {
   console.log(req.user);
 
-  const transactions = await Transaction.find();
+  const transactions = await Transaction.find({ user_id: req.user._id });
   const { profitLoss, purchase, revenue } = calculateStats(transactions);
 
   res.render("homepage", {

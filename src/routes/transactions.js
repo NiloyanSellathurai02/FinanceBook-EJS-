@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     let limitFilter = 0;
     if (limit) limitFilter = Number(limit);
 
-    let findQuery = {};
+    let findQuery = { user_id: req.user._id };
     if (q) findQuery["$text"] = { $search: q };
 
     let skipFilter = 0;
@@ -31,14 +31,17 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/stats", async (req, res) => {
-  const findAllMoney = await Transaction.find();
+  const findAllMoney = await Transaction.find({ user_id: req.user._id });
   res.send(findAllMoney);
 });
 
 router.get("/:transactionId", async (req, res) => {
   try {
     console.log(req.params.transactionId);
-    const transaction = await Transaction.findById(req.params.transactionId);
+    const transaction = await Transaction.findOne({
+      _id: req.params.transactionId,
+      user_id: req.user._id,
+    });
     res.send(transaction);
   } catch (error) {
     res.status(400).send(error.message);
@@ -61,6 +64,7 @@ router.post("/", async (req, res) => {
       transaction_number: transactionNumber,
       amount: transactionAmount,
       type: transactionType,
+      user_id: req.user._id,
     });
 
     res.send(newTransaction);
@@ -83,13 +87,19 @@ router.patch("/:transactionId", async (req, res) => {
 
     if (transactionAmount < 100) throw Error("Amount is too low!");
 
-    await Transaction.findByIdAndUpdate(transactionId, {
-      date: transactionDate,
-      description: companyName,
-      transaction_number: transactionNumber,
-      amount: transactionAmount,
-      type: transactionType,
-    });
+    await Transaction.findOneAndUpdate(
+      {
+        _id: req.params.transactionId,
+        user_id: req.user._id,
+      },
+      {
+        date: transactionDate,
+        description: companyName,
+        transaction_number: transactionNumber,
+        amount: transactionAmount,
+        type: transactionType,
+      }
+    );
 
     res.sendStatus(200);
   } catch (error) {
@@ -99,8 +109,10 @@ router.patch("/:transactionId", async (req, res) => {
 
 router.delete("/:transactionId", async (req, res) => {
   try {
-    const transactiondId = req.params.transactionId;
-    await Transaction.findByIdAndDelete(transactiondId);
+    await Transaction.findOneAndDelete({
+      _id: req.params.transactionId,
+      user_id: req.user._id,
+    });
     res.sendStatus(200);
   } catch (error) {
     res.status(400).send(error.message);

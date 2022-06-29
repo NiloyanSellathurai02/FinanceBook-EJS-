@@ -6,6 +6,7 @@ const schema = new mongoose.Schema({
   transaction_number: "string",
   amount: "number",
   type: "string",
+  user_id: mongoose.Types.ObjectId,
 });
 
 schema.index({

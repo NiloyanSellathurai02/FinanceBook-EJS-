@@ -5,7 +5,7 @@ const transactionSchema = Joi.object({
     .pattern(/^[a-zA-Z0-9\s_-]+$/, { name: "string" })
     .max(200)
     .required(),
-  transactionAmount: Joi.number().required(),
+  transactionAmount: Joi.number().max(15000).required(),
   transactionDate: Joi.date().greater("1-1-1974").required(),
   transactionNumber: Joi.string()
     .pattern(/^[a-zA-Z0-9\s_-]+$/, { name: "string" })
