@@ -7,7 +7,7 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 
-const hotReload = require("../hot-reload");
+// const hotReload = require("../hot-reload");
 const { isAuthenticated } = require("./middleware");
 const Transaction = require("./models/Transaction");
 const api = require("./routes/api");
