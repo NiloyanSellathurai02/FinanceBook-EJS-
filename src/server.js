@@ -7,6 +7,8 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 
+const path = require("path");
+express.static(path.join(__dirname, "public"));
 // const hotReload = require("../hot-reload");
 const { isAuthenticated } = require("./middleware");
 const Transaction = require("./models/Transaction");
