@@ -38,7 +38,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(api);
 
-app.use(hotReload());
+// app.use(hotReload());
 
 // VIEWS
 app.get("/homepage", isAuthenticated, async (req, res) => {
