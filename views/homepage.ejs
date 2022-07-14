@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("head.ejs") %>
+  <%- include("head") %>
   <body>
-    <div class="container--main"><%- include('partials/header.ejs') %></div>
-    <%- include('MenuModal.ejs') %>
+    <div class="container--main"><%- include('partials/header') %></div>
+    <%- include('modals/MenuModal') %>
     <!-------------------------------->
-    <%- include('AddTransactions.ejs') %>
+    <%- include('modals/addTransactions') %>
     <main>
       <!-------------------------------->
-      <%- include('partials/Stats.ejs') %>
+      <%- include('partials/Stats') %>
       <!-------------------------------->
-      <%- include('partials/TransactionOverview.ejs') %>
+      <%- include('partials/TransactionOverview') %>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="api.js"></script>
