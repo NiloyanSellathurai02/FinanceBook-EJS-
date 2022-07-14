@@ -2,14 +2,15 @@
 <html lang="en">
   <%- include("head.ejs") %>
   <body>
-    <div class="container--main">
-      <%- include('./views/partials/Header.ejs') %>
-    </div>
-    <%- include('./views/partials/modals/MenuModal.ejs') %> <%-
-    include('views/partials/modals/AddTransactions.ejs') %>
+    <div class="container--main"><%- include('Header.ejs') %></div>
+    <%- include('MenuModal.ejs') %>
+    <!-------------------------------->
+    <%- include('AddTransactions.ejs') %>
     <main>
-      <%- include('./views/partials/Stats.ejs') %> <%-
-      include('./views/partials/TransactionOverview.ejs') %>
+      <!-------------------------------->
+      <%- include('Stats.ejs') %>
+      <!-------------------------------->
+      <%- include('TransactionOverview.ejs') %>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="api.js"></script>
