@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("./head.ejs") %>
+  <%- include("head.ejs") %>
   <body>
-    <div class="container--main"><%- include('./partials/Header.ejs') %></div>
-    <%- include('./partials/modals/MenuModal.ejs') %> <%-
-    include('./partials/modals/AddTransactions.ejs') %>
+    <div class="container--main"><%- include('/partials/Header.ejs') %></div>
+    <%- include('/partials/modals/MenuModal.ejs') %> <%-
+    include('/partials/modals/AddTransactions.ejs') %>
     <main>
-      <%- include('./partials/Stats.ejs') %> <%-
-      include('./partials/TransactionOverview.ejs') %>
+      <%- include('/partials/Stats.ejs') %> <%-
+      include('/partials/TransactionOverview.ejs') %>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="api.js"></script>
