@@ -5,8 +5,8 @@
   height: 100vh;
   width: 100%;
   /* background-color: #0b6e5c; */
-  background-image: linear-gradient(to bottom, #233884b0, #0b6e5ca5),
-    url("../images/WhatsApp\ Image\ 2022-06-15\ at\ 3.27.52\ PM.jpeg");
+  background-image: linear-gradient(to bottom, #1c1c1cd2, #fbaf2289),
+    url("../images/austin-distel-wD1LRb9OeEo-unsplash.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -45,7 +45,7 @@
 .loginName {
   padding: 0.5rem 1rem;
   width: 100%;
-  border: 3px solid #0b6e5c;
+  border: 3px solid #fbb022;
   border-radius: 0.25rem;
   box-shadow: 0 2px 10px 0 rgb(0, 0, 0, 0.25), 0 10px 20px 0 rgb(0, 0, 0, 0.15);
 }
@@ -53,7 +53,7 @@
 .password {
   padding: 0.5rem 1rem;
   width: 100%;
-  border: 3px solid #0b6e5c;
+  border: 3px solid #fbb022;
   border-radius: 0.25rem;
   box-shadow: 0 2px 10px 0 rgb(0, 0, 0, 0.25), 0 10px 20px 0 rgb(0, 0, 0, 0.15);
 }
@@ -63,8 +63,8 @@
 }
 
 .login-btn {
-  background-color: #0b6e5c;
-  color: white;
+  background-color: #fbb022;
+  color: #000000;
   padding: 0.3rem 1rem;
   font-size: 1rem;
   border-radius: 0.25rem;
